@@ -1,40 +1,40 @@
-CREATE TABLE membre(
-   id_membre INT AUTO_INCREMENT,
+CREATE TABLE User(
+   id_user INT AUTO_INCREMENT,
    pseudonyme VARCHAR(50) NOT NULL,
    email VARCHAR(255) NOT NULL,
    password VARCHAR(255) NOT NULL,
    dateInscription DATETIME DEFAULT CURRENT_TIMESTAMP,
-   PRIMARY KEY(id_membre),
+   PRIMARY KEY(id_user),
    UNIQUE(pseudonyme),
    UNIQUE(email)
 );
 
-CREATE TABLE categorie(
+CREATE TABLE Categorie(
    id_categorie INT AUTO_INCREMENT,
    libelle VARCHAR(50) NOT NULL,
    PRIMARY KEY(id_categorie),
    UNIQUE(libelle)
 );
 
-CREATE TABLE sujet(
+CREATE TABLE Sujet(
    id_sujet INT AUTO_INCREMENT,
-   titre VARCHAR(50) NOT NULL,
+   titre VARCHAR(255) NOT NULL,
    dateCreation DATETIME DEFAULT CURRENT_TIMESTAMP,
    statut BOOLEAN NOT NULL,
-   categorie_id INT NOT NULL,
-   membre_id INT NOT NULL,
+   id_categorie INT NOT NULL,
+   id_user INT NOT NULL,
    PRIMARY KEY(id_sujet),
-   FOREIGN KEY(categorie_id) REFERENCES categorie(id_categorie),
-   FOREIGN KEY(membre_id) REFERENCES membre(id_membre)
+   FOREIGN KEY(id_categorie) REFERENCES Categorie(id_categorie),
+   FOREIGN KEY(id_user) REFERENCES Users(id_user)
 );
 
-CREATE TABLE message(
+CREATE TABLE Message(
    id_message INT AUTO_INCREMENT,
    texte TEXT NOT NULL,
    dateCreation DATETIME DEFAULT CURRENT_TIMESTAMP,
-   membre_id INT NOT NULL,
-   sujet_id INT NOT NULL,
+   id_user INT NOT NULL,
+   id_sujet INT NOT NULL,
    PRIMARY KEY(id_message),
-   FOREIGN KEY(membre_id) REFERENCES membre(id_membre),
-   FOREIGN KEY(sujet_id) REFERENCES sujet(id_sujet)
+   FOREIGN KEY(id_user) REFERENCES Users(id_user),
+   FOREIGN KEY(id_sujet) REFERENCES Sujet(id_sujet)
 );
