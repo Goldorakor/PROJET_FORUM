@@ -47,7 +47,7 @@ final class Categorie extends Entity {
      *
      * @return  self
      */ 
-    public function setLibelle($name) {
+    public function setLibelle($libelle) {
         $this->libelle = $libelle;
         return $this;
     }

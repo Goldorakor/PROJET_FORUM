@@ -18,7 +18,7 @@ class SujetManager extends Manager {
     public function findSujetsByCategorie($id) {
 
         $sql = "SELECT * 
-                FROM '.$this->tableName.' t 
+                FROM $this->tableName t 
                 WHERE t.categorie_id = :id";
        
         // la requête renvoie plusieurs enregistrements --> getMultipleResults

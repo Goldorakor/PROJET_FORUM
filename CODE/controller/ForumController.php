@@ -4,17 +4,19 @@ namespace Controller;
 use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
-use Model\Managers\CategoryManager;
-use Model\Managers\TopicManager;
+use Model\Managers\CategorieManager;
+use Model\Managers\SujetManager;
+use Model\Managers\MessageManager;
 
-class ForumController extends AbstractController implements ControllerInterface{
+
+class ForumController extends AbstractController implements ControllerInterface {
 
     public function index() {
         
         // créer une nouvelle instance de CategoryManager
         $categorieManager = new CategorieManager();
         // récupérer la liste de toutes les catégories grâce à la méthode findAll de Manager.php (triés par nom)
-        $categories = $categorieManager->findAll(["name", "DESC"]);
+        $categories = $categorieManager->findAll(["libelle", "DESC"]);
 
         // le controller communique avec la vue "listCategories" (view) pour lui envoyer la liste des catégories (data)
         return [
@@ -34,11 +36,28 @@ class ForumController extends AbstractController implements ControllerInterface{
         $sujets = $sujetManager->findSujetsByCategorie($id);
 
         return [
-            "view" => VIEW_DIR."forum/listTopics.php",
-            "meta_description" => "Liste des topics par catégorie : ".$categorie,
+            "view" => VIEW_DIR."forum/listSujets.php",
+            "meta_description" => "Liste des sujets par catégorie : ".$categorie,
             "data" => [
                 "categorie" => $categorie,
                 "sujets" => $sujets
+            ]
+        ];
+    }
+
+    public function listMessagesBySujet($id) {
+
+        $messageManager = new MessageManager();
+        $sujetManager = new SujetManager();
+        $sujet = $sujetManager->findOneById($id);
+        $messages = $messageManager->findMessagesBySujet($id);
+
+        return [
+            "view" => VIEW_DIR."forum/listMessages.php",
+            "meta_description" => "Liste des messages par sujet : ".$sujet,
+            "data" => [
+                "sujet" => $sujet,
+                "messages" => $messages
             ]
         ];
     }

@@ -11,7 +11,7 @@ final class Message extends Entity {
 
     private $id;
     private $texte;
-    private $membre;
+    private $user;
     private $sujet;
     private $dateCreation;
 
@@ -54,19 +54,19 @@ final class Message extends Entity {
     }
 
     /**
-     * Get the value of membre
+     * Get the value of user
      */ 
-    public function getMembre() {
-        return $this->membre;
+    public function getUser() {
+        return $this->user;
     }
 
     /**
-     * Set the value of membre
+     * Set the value of user
      *
      * @return  self
      */ 
-    public function setMembre($membre) {
-        $this->membre = $membre;
+    public function setUser($user) {
+        $this->user = $user;
         return $this;
     }
 
@@ -91,7 +91,9 @@ final class Message extends Entity {
      * Get the value of dateCreation
      */ 
     public function getDateCreation() {
-        return $this->dateCreation;
+        $dateObjet = new \DateTime ($this->dateCreation);
+        $result = $dateObjet->format("d-m-Y H:i:s");
+        return $result;
     }
 
     /**
@@ -104,9 +106,16 @@ final class Message extends Entity {
         return $this;
     }
 
+    public function formatDate($dateCreation) {
+        $dateObjet = new DateTime ($dateCreation);
+        $result = $dateObjet->format("d-m-Y H:i:s");
+        return $result;
+    }
+
     /* je ne sais pas quoi retourner pour le __toString() de cette table, je le supprime pour le moment.
     public function __toString() {
         return $this->;
     }
     */
+
 }

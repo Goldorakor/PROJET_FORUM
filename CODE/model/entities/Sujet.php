@@ -11,7 +11,7 @@ final class Sujet extends Entity {
 
     private $id;
     private $titre;
-    private $membre;
+    private $user;
     private $categorie;
     private $dateCreation;
     private $statut;
@@ -55,19 +55,19 @@ final class Sujet extends Entity {
     }
 
     /**
-     * Get the value of membre
+     * Get the value of user
      */ 
-    public function getMembre() {
-        return $this->membre;
+    public function getUser() {
+        return $this->user;
     }
 
     /**
-     * Set the value of membre
+     * Set the value of user
      *
      * @return  self
      */ 
-    public function setMembre($membre) {
-        $this->membre = $membre;
+    public function setUser($user) {
+        $this->user = $user;
         return $this;
     }
 
@@ -92,7 +92,9 @@ final class Sujet extends Entity {
      * Get the value of dateCreation
      */ 
     public function getDateCreation() {
-        return $this->dateCreation;
+        $dateObjet = new \DateTime ($this->dateCreation);
+        $result = $dateObjet->format("d-m-Y H:i:s");
+        return $result;
     }
 
     /**
@@ -125,4 +127,5 @@ final class Sujet extends Entity {
     public function __toString() {
         return $this->titre;
     }
+
 }
