@@ -34,20 +34,20 @@ INSERT INTO `categorie` (`id_categorie`, `libelle`) VALUES
 	(3, 'Sport'),
 	(4, 'Voyages');
 
--- Listage de la structure de table forum_michael. membre
-CREATE TABLE IF NOT EXISTS `membre` (
-  `id_membre` int NOT NULL AUTO_INCREMENT,
+-- Listage de la structure de table forum_michael. user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id_user` int NOT NULL AUTO_INCREMENT,
   `pseudonyme` varchar(50) COLLATE utf8mb4_bin NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   `dateInscription` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_membre`),
+  PRIMARY KEY (`id_user`),
   UNIQUE KEY `pseudonyme` (`pseudonyme`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
--- Listage des données de la table forum_michael.membre : ~5 rows (environ)
-INSERT INTO `membre` (`id_membre`, `pseudonyme`, `email`, `password`, `dateInscription`) VALUES
+-- Listage des données de la table forum_michael.user : ~5 rows (environ)
+INSERT INTO `user` (`id_user`, `pseudonyme`, `email`, `password`, `dateInscription`) VALUES
 	(1, 'Alain', 'alain123@hotmail.com', 'alain123456', '2024-12-04 14:37:20'),
 	(2, 'Bruno', 'bruno123@hotmail.com', 'bruno123456', '2024-12-04 14:37:43'),
 	(3, 'Claire', 'claire123@hotmail.com', 'claire123456', '2024-12-04 14:38:02'),
@@ -59,17 +59,17 @@ CREATE TABLE IF NOT EXISTS `message` (
   `id_message` int NOT NULL AUTO_INCREMENT,
   `texte` text COLLATE utf8mb4_bin NOT NULL,
   `dateCreation` datetime DEFAULT CURRENT_TIMESTAMP,
-  `membre_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `sujet_id` int NOT NULL,
   PRIMARY KEY (`id_message`),
-  KEY `membre_id` (`membre_id`),
+  KEY `membre_id` (`user_id`),
   KEY `sujet_id` (`sujet_id`),
-  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`membre_id`) REFERENCES `membre` (`id_membre`),
+  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `membre` (`id_user`),
   CONSTRAINT `message_ibfk_2` FOREIGN KEY (`sujet_id`) REFERENCES `sujet` (`id_sujet`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Listage des données de la table forum_michael.message : ~9 rows (environ)
-INSERT INTO `message` (`id_message`, `texte`, `dateCreation`, `membre_id`, `sujet_id`) VALUES
+INSERT INTO `message` (`id_message`, `texte`, `dateCreation`, `user_id`, `sujet_id`) VALUES
 	(1, 'recette s\'il vous plait ! ', '2024-12-04 14:46:25', 4, 1),
 	(2, 'cuis des pates dans l\'eau ! ', '2024-12-04 14:46:57', 3, 1),
 	(3, 'recette avec tomate please ! ', '2024-12-04 14:47:51', 1, 2),
@@ -87,16 +87,16 @@ CREATE TABLE IF NOT EXISTS `sujet` (
   `dateCreation` datetime DEFAULT CURRENT_TIMESTAMP,
   `statut` tinyint(1) NOT NULL,
   `categorie_id` int NOT NULL,
-  `membre_id` int NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id_sujet`),
   KEY `categorie_id` (`categorie_id`),
-  KEY `membre_id` (`membre_id`),
+  KEY `user_id` (`user_id`),
   CONSTRAINT `sujet_ibfk_1` FOREIGN KEY (`categorie_id`) REFERENCES `categorie` (`id_categorie`),
-  CONSTRAINT `sujet_ibfk_2` FOREIGN KEY (`membre_id`) REFERENCES `membre` (`id_membre`)
+  CONSTRAINT `sujet_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- Listage des données de la table forum_michael.sujet : ~4 rows (environ)
-INSERT INTO `sujet` (`id_sujet`, `titre`, `dateCreation`, `statut`, `categorie_id`, `membre_id`) VALUES
+INSERT INTO `sujet` (`id_sujet`, `titre`, `dateCreation`, `statut`, `categorie_id`, `user_id`) VALUES
 	(1, 'pâtes au parmesan', '2024-12-04 14:41:29', 1, 2, 4),
 	(2, 'pâtes à la tomate', '2024-12-04 14:41:58', 1, 2, 1),
 	(3, 'le rouge dans l\'art abstrait', '2024-12-04 14:42:35', 1, 1, 3),
