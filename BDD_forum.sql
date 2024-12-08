@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `message` (
   `user_id` int NOT NULL,
   `sujet_id` int NOT NULL,
   PRIMARY KEY (`id_message`),
-  KEY `membre_id` (`user_id`),
+  KEY `user_id` (`user_id`),
   KEY `sujet_id` (`sujet_id`),
-  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `membre` (`id_user`),
+  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
   CONSTRAINT `message_ibfk_2` FOREIGN KEY (`sujet_id`) REFERENCES `sujet` (`id_sujet`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
