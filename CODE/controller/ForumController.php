@@ -62,4 +62,31 @@ class ForumController extends AbstractController implements ControllerInterface 
         ];
     }
 
+    // 
+    public function ajoutMessageBySujet($id) { // pas modifié pour le moment
+
+        // on applique les filtres aux données récupérées :
+
+        $texte = filter_input(INPUT_POST, "newTexte", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // 'newTexte' récup de notre formulaire de listMessages.php
+        $user = 2; // on prend l'utilisateur 2 pour le moment
+        $sujet = filter_input(INPUT_GET,"id", FILTER_SANITIZE_NUMBER_INT); // dans l'url : id = $sujet->getId()
+
+        $data = [
+            'texte' => $texte,
+            'user_id' => 2,
+            'sujet_id' => $sujet
+            ];
+
+
+        $messageManager = new MessageManager();
+        $sujetManager = new SujetManager();
+        $message = $messageManager->add($data); // et pas addMessage !! 
+
+    }
+
+
+
 }
+
+
+

@@ -106,12 +106,6 @@ final class Message extends Entity {
         return $this;
     }
 
-    public function formatDate($dateCreation) {
-        $dateObjet = new DateTime ($dateCreation);
-        $result = $dateObjet->format("d-m-Y H:i:s");
-        return $result;
-    }
-
     /* je ne sais pas quoi retourner pour le __toString() de cette table, je le supprime pour le moment.
     public function __toString() {
         return $this->;

@@ -19,7 +19,8 @@ class SujetManager extends Manager {
 
         $sql = "SELECT * 
                 FROM $this->tableName t 
-                WHERE t.categorie_id = :id";
+                WHERE t.categorie_id = :id
+                ORDER BY t.dateCreation DESC"; // je rajoute cette ligne pour trier les sujets en fonction de l'ancienneté, les plus récents étant affichés en premier dans notre liste
        
         // la requête renvoie plusieurs enregistrements --> getMultipleResults
         return  $this->getMultipleResults(

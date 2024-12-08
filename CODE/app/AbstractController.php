@@ -12,7 +12,7 @@ namespace App;
 
 abstract class AbstractController {
 
-    public function index() {}
+    public function index() {} // on rend la fonction abstraite pour forcer les sous-classes à l'implémenter.
 
     public function redirectTo($ctrl = null, $action = null, $id = null) {
 

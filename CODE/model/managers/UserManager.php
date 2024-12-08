@@ -13,4 +13,29 @@ class UserManager extends Manager{
     public function __construct(){
         parent::connect();
     }
+
+    public function add($data) {
+        //$keys = ['username' , 'password', 'email']
+        $keys = array_keys($data);
+        //$values = ['Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com']
+        $values = array_values($data);
+        //"username,password,email"
+        $sql = "INSERT INTO ".$this->tableName." 
+                (".implode(',', $keys).") 
+                VALUES
+                ('".implode("','",$values)."')";
+                //"'Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com'"
+        /*
+            INSERT INTO user (username,password,email) VALUES ('Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com') 
+        */
+        try{
+            return DAO::insert($sql);
+        }
+        catch(\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    
 }

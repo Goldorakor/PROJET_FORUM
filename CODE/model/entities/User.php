@@ -95,7 +95,9 @@ final class User extends Entity {
      * Get the value of dateInscription
      */ 
     public function getDateInscription() {
-        return $this->dateInscription;
+        $dateObjet = new \DateTime ($this->dateInscription);
+        $result = $dateObjet->format("d-m-Y H:i:s");
+        return $result;
     }
 
     /**
@@ -113,3 +115,4 @@ final class User extends Entity {
         return $this->pseudonyme;
     }
 }
+
