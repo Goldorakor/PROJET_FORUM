@@ -3,9 +3,29 @@ namespace Controller;
 
 use App\AbstractController;
 use App\ControllerInterface;
+use App\Session;
+use Model\Managers\UserManager;
+use Model\Managers\CategorieManager;
+use Model\Managers\SujetManager;
+use Model\Managers\MessageManager;
+use Model\Managers\Manager;
+
+
 
 class SecurityController extends AbstractController {
     // contiendra les méthodes liées à l'authentification : register, login et logout
+
+
+    public function index() {
+        
+        return [
+            "view" => VIEW_DIR."register.php",
+            "meta_description" => "Formulaire d'inscription"
+        ];
+        
+
+    }
+
 
     // on se sert de case "register" du Projet_HASH_prepaForum/traitement.php 
     public function register () {
@@ -45,7 +65,7 @@ class SecurityController extends AbstractController {
 
                 // si utilisateur existe (autrement dit, si $requete->fetch() nous renvoie bien une ligne), on ne veut pas l'inscrire dans notre BDD
                 if($user) {
-                    header("Location: index.php?ctrl=security&action=login"); exit;
+                    header("Location: index.php?ctrl=forum&action=index"); exit; // Location: index.php?ctrl=security&action=login
                 } else {
                     // var_dump("utilisateur inexistant"); die;
                     // insertion de l'utilisateur en base de données car il n'existe pas encore
@@ -63,16 +83,19 @@ class SecurityController extends AbstractController {
                         ]);
                         */
 
-                        header("Location: index.php?ctrl=forum&action=")
-                        /*
-                        return [
-                            "view" => VIEW_DIR."forum/index.php",
+                        header("Location: index.php?ctrl=forum&action=index"); exit; // on emmène l'utilisateur sur la liste des catégories
+                        
+                        
+                        
+                        /*return [
+                            "view" => VIEW_DIR."forum/listCategories.php",
                             "meta_description" => "Formulaire d'inscription",
                             "data" => [
                                 "user" => $user
                             ]
                         ];
                         */
+                        
 
                         // header("Location: index.php?ctrl=forum&action=index"); exit;  Location: index.php?ctrl=security&action=login  yyyyyyyyyyyyyyyy si on est bien enregistré, on est naturellement redirigé vers login, pour pouvoir se 'loguer' sur le site
                     } else {

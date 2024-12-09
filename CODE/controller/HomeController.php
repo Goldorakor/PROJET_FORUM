@@ -7,7 +7,7 @@ use Model\Managers\UserManager;
 
 class HomeController extends AbstractController implements ControllerInterface {
 
-    public function index(){
+    public function index() {
         return [
             "view" => VIEW_DIR."home.php",
             "meta_description" => "Page d'accueil du forum"
