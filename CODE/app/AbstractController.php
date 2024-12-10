@@ -14,7 +14,7 @@ abstract class AbstractController {
 
     public function index() {} // on rend la fonction abstraite pour forcer les sous-classes à l'implémenter.
 
-    public function redirectTo($ctrl = null, $action = null, $id = null) {
+    public function redirectTo($ctrl = null, $action = null, $id = null) { // Les paramètres ont une valeur par défaut null, ce qui signifie qu'ils sont optionnels.
 
         $url = $ctrl ? "?ctrl=".$ctrl : "";
         $url.= $action ? "&action=".$action : "";

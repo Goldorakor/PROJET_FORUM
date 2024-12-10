@@ -15,7 +15,7 @@
         <label for="pass2">Confirmation du mot de passe :</label><br>
         <input type="password" id="pass2" name="pass2" placeholder="Mot de passe identique" required><br><br>
     
-        <input type="submit" name="submit" value="Submit"><br><br>
+        <input type="submit" name="submit" value="S'enregistrer"><br><br>
     
 </form>
 

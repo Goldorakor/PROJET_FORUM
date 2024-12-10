@@ -14,6 +14,7 @@ final class User extends Entity {
     private $email;
     private $password;
     private $dateInscription;
+    private $role; // on ajoute cette propriété tardivement pour être conforme au MVC
 
 
     public function __construct($data) {         
@@ -109,6 +110,29 @@ final class User extends Entity {
         $this->dateInscription = $dateInscription;
 
         return $this;
+    }
+
+    /**
+     * Get the value of role
+     */ 
+    public function getRole() {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  self
+     */ 
+    public function setRole($role) {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function hasRole($role) // 
+    {
+        return $this->getRole() === $role;
     }
 
     public function __toString() {

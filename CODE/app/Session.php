@@ -37,9 +37,9 @@ class Session {
         return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
     }
 
-    public static function isAdmin(){
+    public static function isAdmin() {
         // attention de bien définir la méthode "hasRole" dans l'entité User en fonction de la façon dont sont gérés les rôles en base de données
-        if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")) {
+        if(self::getUser() && self::getUser()->hasRole("admin")) { // "ROLE_ADMIN" -> "admin"   et self:: car static function
             return true;
         }
         return false;
