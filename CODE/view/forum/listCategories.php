@@ -7,7 +7,7 @@
 <?php
 foreach($categories as $categorie ) { ?>
     <p><a href="index.php?ctrl=forum&action=listSujetsByCategorie&id=<?= $categorie->getId() ?>"><?= $categorie->getLibelle() ?></a></p>
-<?php }
+<?php } ?>
 
 
   

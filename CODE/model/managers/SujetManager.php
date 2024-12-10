@@ -105,7 +105,7 @@ class SujetManager extends Manager {
         return DAO::update($sql, ['id' => $id]); // public static function update($sql, $params) dans DAO.php -> 2 paramètres ici
     }
 
-    // CASE est une construction SQL standard et fonctionne partout.
+    // CASE est une construction SQL standard et fonctionne partout. : on choisit cette méthode par défaut
     public function changeStatutBySujet4($id) {
 
         $sql = "UPDATE $this->tableName t

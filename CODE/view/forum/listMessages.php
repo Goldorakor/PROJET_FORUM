@@ -24,12 +24,12 @@ if(isset($messages)) { // count($messages) > 0 -> il y a au moins un message
 <?php if ((isset($user)) AND ($sujet->getStatut() == 1)) { ?>
 
     <h3>Envoyer un message</h3>
-<!-- formulaire pour ajouter un message à ce sujet de discussion -->
-<form action="index.php?ctrl=forum&action=ajoutMessageBySujet&id=<?= $sujet->getId() ?>" method="POST">
-    <label for="newTexte">Nouveau message :</label><br>
-    <textarea id="newTexte" name="newTexte"></textarea><br><br>
-    <input type="submit" name="submit" value="Submit">
-</form>
+        <!-- formulaire pour ajouter un message à ce sujet de discussion -->
+        <form action="index.php?ctrl=forum&action=ajoutMessageBySujet&id=<?= $sujet->getId() ?>" method="POST">
+            <label for="newTexte">Nouveau message :</label><br>
+            <textarea id="newTexte" name="newTexte"></textarea><br><br>
+            <input type="submit" name="submit" value="Submit">
+        </form>
 
 <?php } else if ((isset($user)) AND ($sujet->getStatut() == 0)) { ?>
 

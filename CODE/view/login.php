@@ -1,6 +1,5 @@
 <h3>Se connecter sur le forum</h3>
 
-
 <form action="index.php?ctrl=security&action=login" method="POST">
     
         <label for="email">Email :</label><br>

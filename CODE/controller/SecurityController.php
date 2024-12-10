@@ -21,8 +21,7 @@ class SecurityController extends AbstractController {
         return [
             "view" => VIEW_DIR."register.php",
             "meta_description" => "Formulaire d'inscription"
-        ];
-        
+        ];  
 
     }
 
@@ -33,7 +32,6 @@ class SecurityController extends AbstractController {
             "meta_description" => "Formulaire de connexion"
         ];
         
-
     }
 
 
@@ -104,7 +102,7 @@ class SecurityController extends AbstractController {
                         */
 
                         // header("Location: index.php?ctrl=forum&action=index"); exit; // on emmène l'utilisateur sur la liste des catégories
-                        $this->redirectTo("forum", "index");
+                        $this->redirectTo("security", "login");
                         
                         
                         
@@ -118,7 +116,7 @@ class SecurityController extends AbstractController {
                         */
                         
 
-                        // header("Location: index.php?ctrl=forum&action=index"); exit;  Location: index.php?ctrl=security&action=login  yyyyyyyyyyyyyyyy si on est bien enregistré, on est naturellement redirigé vers login, pour pouvoir se 'loguer' sur le site
+                        // header("Location: index.php?ctrl=forum&action=index"); exit;  Location: index.php?ctrl=security&action=login : si on est bien enregistré, on est naturellement redirigé vers login, pour pouvoir se 'loguer' sur le site
                     } else {
                         // message "Les mots de passe ne sont pas identiques ou mot de passe trop court ! -> l'utilisateur doit refaire la manipulation d'enregistrement
                         echo "Le mot de passe doit comporter au moins 2 majuscules, 1 minuscule, 1 chiffre, 1 caractère spécial et plus de 12 caractères en tout";

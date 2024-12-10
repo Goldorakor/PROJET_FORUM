@@ -1,6 +1,5 @@
 <h3>S'enregistrer sur le forum</h3>
 
-
 <form action="index.php?ctrl=security&action=register" method="POST">
     
         <label for="pseudonyme">Pseudonyme :</label><br>

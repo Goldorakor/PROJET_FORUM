@@ -37,7 +37,6 @@ class UserManager extends Manager{
         }
     }
     
-
     public function findOneByEmail($email) {
 
         $sql = "SELECT *
@@ -49,6 +48,5 @@ class UserManager extends Manager{
             $this->className
         );
     }
-
     
 }
