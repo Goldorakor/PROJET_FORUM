@@ -42,5 +42,19 @@ if(isset($messages)) { // count($messages) > 0 -> il y a au moins un message
 <?php } ?>
 
 
-<!-- index.php?ctrl=forum&action=listMessagesBySujet&id=   = $sujet->getId() -->
+<!-- index.php?ctrl=forum&action=listMessagesBySujet&id=   = $sujet->getId() 
+ 
+
+explications Mickael à retenir : 
+$user = false;
+ 
+if ((isset($user)) AND ($sujet->getStatut() == 1)) {
+    // Passe car $user est défini, mais l'autre condition peut bloquer.
+}
+if (($user) AND ($sujet->getStatut() == 1)) {
+    // Ne passe pas car $user est "faux".
+}
+
+
+-->
 
